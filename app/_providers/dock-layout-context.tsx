@@ -7,28 +7,32 @@ export type DockLayoutContextType = {
   layoutRef?: DockLayout;
 };
 
+export type DockLayoutContextTypePartial = Partial<DockLayoutContextType>;
+
 const DockLayoutContext = React.createContext<
   | [
-      DockLayoutContextType | undefined,
-      React.Dispatch<React.SetStateAction<DockLayoutContextType | undefined>>
+      DockLayoutContextType,
+      (valuesToSet: DockLayoutContextTypePartial) => void
     ]
   | undefined
 >(undefined);
 
 export function DockLayoutProvider({
   children,
+  defaultDockLayout
 }: {
   children: React.ReactNode;
+  defaultDockLayout?: LayoutBase;
 }) {
   const tab = {
     content: <div>Tab Content</div>,
     closable: true,
   };
 
-  const [dockLayout, setDockLayout] = useState<
+  const [dockLayoutState, setDockLayout] = useState<
     DockLayoutContextType | undefined
   >({
-    layoutBase: {
+    layoutBase: defaultDockLayout ? defaultDockLayout : {
       dockbox: {
         mode: 'horizontal',
         children: [
@@ -44,7 +48,13 @@ export function DockLayoutProvider({
   });
 
   return (
-    <DockLayoutContext.Provider value={[dockLayout, setDockLayout]}>
+    <DockLayoutContext.Provider value={[dockLayoutState, (valuesToSet: DockLayoutContextTypePartial) => {
+      console.log(valuesToSet);
+      setDockLayout({
+        ...dockLayoutState,
+        ...valuesToSet,
+      });
+    }]}>
       {children}
     </DockLayoutContext.Provider>
   );

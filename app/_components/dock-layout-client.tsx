@@ -10,21 +10,8 @@ import {
 } from 'rc-dock';
 import { useDockLayoutContext } from '../_providers/dock-layout-context';
 
-const DockLayoutClient = ({
-  defaultDockLayout,
-}: {
-  defaultDockLayout: LayoutBase;
-}) => {
+const DockLayoutClient = () => {
   const [dockLayoutContext, setDockLayoutContext] = useDockLayoutContext();
-  console.log(dockLayoutContext?.layoutBase);
-
-  if (defaultDockLayout) {
-    console.log('input layout', defaultDockLayout);
-    setDockLayoutContext({
-      ...dockLayoutContext,
-      layoutBase: defaultDockLayout,
-    });
-  }
 
   let currDockLayout: DockLayout;
   const getRef = (r: any) => {
@@ -60,9 +47,12 @@ const DockLayoutClient = ({
     setDockLayoutContext({ layoutBase: newLayout, layoutRef: currDockLayout });
   };
 
+  const [domLoaded, setDomLoaded] = useState(false);
+  useEffect(() => setDomLoaded(true), []);
+
   return (
     <div className="flex flex-auto bg-gray-700 h-full w-full">
-      <DockLayout
+      {domLoaded && <DockLayout
         ref={getRef}
         onLayoutChange={onLayoutChange}
         layout={dockLayoutContext?.layoutBase}
@@ -72,7 +62,7 @@ const DockLayoutClient = ({
           height: '100%',
           width: '100%',
         }}
-      ></DockLayout>
+      ></DockLayout>}
     </div>
   );
 };
