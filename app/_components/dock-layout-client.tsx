@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+//import '../../../rc-dock/dist/rc-dock-dark.css';
 import 'rc-dock/dist/rc-dock-dark.css';
 import {
   DockLayout,
@@ -9,6 +10,7 @@ import {
   TabData,
 } from 'rc-dock';
 import { useDockLayoutContext } from '../_providers/dock-layout-context';
+import { ClientWrapper } from './client-wrapper';
 
 const DockLayoutClient = () => {
   const [dockLayoutContext, setDockLayoutContext] = useDockLayoutContext();
@@ -31,8 +33,8 @@ const DockLayoutClient = () => {
     console.log(data);
     return {
       ...data,
-      title: <span title="Loading tab">Loading</span>,
-      content: <span>Loading...</span>,
+      title: <ClientWrapper><span title="Loading tab">Loading</span></ClientWrapper>,
+      content: <ClientWrapper><span>Loading...</span></ClientWrapper>,
       closable: true,
     };
   };
