@@ -1,3 +1,4 @@
+'use client';
 import { DockLayoutClient } from '../_components/dock-layout-client';
 import { DockLayoutProvider } from '../_providers/dock-layout-context';
 
