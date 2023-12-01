@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import '../../../rc-dock/dist/rc-dock-dark.css';
-//import 'rc-dock/dist/rc-dock-dark.css';
+//import '../../../rc-dock/dist/rc-dock-dark.css';
+import 'rc-dock/dist/rc-dock-dark.css';
 import {
   DockLayout,
   LayoutBase,
