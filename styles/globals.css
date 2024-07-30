@@ -22,3 +22,23 @@ body {
     color-scheme: dark;
   }
 }
+
+.test .dock-box {
+  z-index: 2000 !important;
+}
+
+.test .dock-fbox {
+  z-index: 2001 !important;
+}
+
+.test .dock-drop-square {
+  z-index: 2000 !important;
+}
+
+.test .dock-drop-indicator {
+  z-index: 2001 !important;
+}
+
+.test .dock-panel.dragging {
+  z-index: 2002 !important;
+}

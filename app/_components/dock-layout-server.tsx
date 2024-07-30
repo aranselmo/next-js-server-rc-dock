@@ -4,7 +4,7 @@ import { DockLayoutProvider } from '../_providers/dock-layout-context';
 
 async function getDefaultLayout() {
   const defaultLayoutRes = await fetch(
-    `http://localhost:3000/api/layout`
+    `http://localhost:5000/api/layout`
     // {
     //   cache: 'no-store',
     // },
